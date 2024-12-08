@@ -6,14 +6,7 @@ import java.util.List;
 import paintings.*;
 import players.*;
 
-/**
- * This class represents the ModernArt game and control 
- * the main logic of the game
- * 
- * You cannot add any new field to this class
- * You cannot add any new public method to this class
- * You cannot change the visibility of the existing methods and fields
- */
+
 public class ModernArt {
 
     /**
@@ -34,19 +27,7 @@ public class ModernArt {
      * The initial money each player has is 100
      */
     public static final int INITIAL_MONEY = 100;
-    /**
-     *
-     * @deprecated
-     *
-     * Use PAINTS instead
-     *
-     * The number of paintings for each artist is fixed 
-     * "0. Manuel Carvalho" = 12 , 
-     * "1. Sigrid Thaler" = 13, 
-     * "2. Daniel Melim" = 15, 
-     * "3. Ramon Martins" = 15, 
-     * "4. Rafael Silveira" = 15
-     */
+    
     @Deprecated
     public static final int[] INITIAL_COUNT = {12, 13, 15, 15, 15};
     /**
@@ -121,22 +102,13 @@ public class ModernArt {
         //TODO
         this.noOfPlayers = 3;
         this.players = new Player[noOfPlayers];
-//        for (int i = 0; i < noOfPlayers; i++) {
-//            players[i] = new Player(INITIAL_MONEY);
-//        }
         players[0] = new Player(INITIAL_MONEY);
         players[1] = new ComputerPlayer(INITIAL_MONEY, scoreboard);
         players[2] = new AFKPlayer(INITIAL_MONEY);
         prepareDeck();
     }
 
-    /**
-     * Given, #updated.
-     * It will creates a game with the given number of players.
-     * Player 1 is a human player, same as PA2
-     * Player 2 is a computer player that will bid rationally
-     * Player 3 and above are AFK players - Away From Keyboard, they will not bid and will play only the first painting in their round.
-     */
+    
     public ModernArt(int noOfPlayers) {
         this.noOfPlayers = noOfPlayers;
         this.players = new Player[noOfPlayers];
@@ -152,13 +124,7 @@ public class ModernArt {
 
     }
 
-    /**
-     * #updated
-     * Prepare the deck of paintings
-     * 
-     * We have 5 artists, each artist has 4 types of paintings,
-     * according to the table PAINTS
-     */
+   
     public void prepareDeck() {
         //TODO
         for (int i = 0; i < PAINTS.length; i++)
@@ -178,13 +144,7 @@ public class ModernArt {
                 }
         shuffle(deck);
     }
-    /**
-     * Deal the paintings to the players. After this method,
-     * each player should receive some number of new paintings in their hand
-     * as specified in the PRE_DEAL array
-     * 
-     * The parameter round indicate which round the game is currently in
-     */
+    
     public void dealPainting(int round) {
         //TODO
         for (int i = 0; i < noOfPlayers; i++) {
@@ -194,13 +154,7 @@ public class ModernArt {
         }
     }
 
-    /**
-     * Deal the paintings to the players. After this method,
-     * each player should receive some number of new paintings in their hand
-     * as specified in the PRE_DEAL array
-     * 
-     * The parameter round indicate which round the game is currently in
-     */
+    
     public int[] updateScoreboard(int round, int[] paintingCount) {
         //TODO
         int maxIndex = 0;
@@ -248,11 +202,7 @@ public class ModernArt {
         return scoreForThisRound;
     }
 
-    /**
-     * #updated - given
-     * This is the main logic of the game and has been completed for you
-     * You are not supposed to change this method
-     */
+   
     public void startgame() {
         System.out.println("Welcome to ModernArt!");
         System.out.println("In this game, players earn experience points (XP) based on their performance.");
@@ -328,11 +278,7 @@ public class ModernArt {
         }
     }
 
-    /**
-     * Shuffle the deck of paintings - given
-     * 
-     * This method is completed for you.
-     */
+    
     public void shuffle(List<Painting> deck) {
         for (int i = 0; i < deck.size(); i++) {
             int index = ThreadLocalRandom.current().nextInt(deck.size());
@@ -342,26 +288,12 @@ public class ModernArt {
         }
     }
 
-    /**
-     * This method is completed for you. We use this for grading purpose
-     * 
-     * You are not allowed to use this method in your code
-     */
     public int[][] getScoreboard() {
         return scoreboard;
     }
-    /**
-     * This method is for grading purpose.
-     * 
-     * You are not allowed to use this method in your code
-     */
+
     public List<Painting> getDeck() {
         return deck;
     }
-    /**
-     * This method is for grading purpose.
-     * 
-     * You are not allowed to use this method in your code
-     */
     public Player[] getPlayers() {return players;}
 }
